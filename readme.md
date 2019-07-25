@@ -119,10 +119,10 @@ Authentication is done using ASP.NET Identity. Due to time constraints, it was n
 Users can use the application without logging in. However their data will be saved under a common _Unregistered User_ account.
 The application requires use of HTTPS. At present it uses a self-signed certificate.
 ## Installation
-To deploy the application to ISS, install the IIS ASP.NET Core module, available [here](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-2.2).
-The application uses an in-process hosting model.
-Alternatively, you can run the application directly using the ASP.NET Core runtime. These are packaged with the deployment package.
+The application can be run natively on the dotnet runtime (netcoreapp2.2). 
 `dotnet run web.dll`
+It can be hosted in IIS using the ASP.NET Core module using in-process hosting. See [here](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-2.2) for instructions on configuring IIS.
+Note that the IIS website must be configured with a https binding. As the applicaiton uses a self-signed certificate, all browsers will present a security warning which must be bypassed to use the application.
 ## Review
 Overall the application was successful. All requirements were met or addressed. 
 The use of LiteDB for data persistence should perform at least as well as SQLite and in theory better than an Entity Framework based implementation. 
