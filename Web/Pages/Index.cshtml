@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = $"{@Model.UserName}'s Todo List";
+}
+
+<div class="text-center">
+    <h4>@Model.UserName's Todo List</h4>
+    <br/>
+    @if (!Model.Items.Any()){
+        <p class="empty">No Todo items!</p>
+    } 
+    else {
+        @foreach (var item in Model.Items) {
+        <div class="row">
+            <div class="col">
+            <form method="post" asp-page="Index" asp-page-handler="Edit" style="display: inline" class="form-inline">
+                <input type="hidden" name="id" value="@item.name" />
+                <input type="text" name="name" class="form-control" value="@item.name"/>
+                <input type="text" name="description" class="form-control" value="@item.description "/>
+                 @if (@item.complete){
+                     <span class="far fa-check-square fa-lg"></span>
+                 }
+                 else {
+                     <span class="far fa-square fa-lg"></span>
+                 }
+                <input class="form-control" readonly type="text" value="@item.lastEventType (@item.lastEventDate)" />
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+            <form method="post" asp-page="Index" asp-page-handler="Remove" style="display: inline">
+                <input type="hidden" name="id" value="@item.name" />
+                <button type="submit" name="name" class="btn btn-primary" style="background-color:red">Delete</button>
+            </form>
+            <form method="post" asp-page="Index" asp-page-handler="Complete" style="display: inline">
+                <input type="hidden" name="id" value="@item.name" />
+                <button type="submit" name="name" class="btn btn-primary" style="background-color:green">Complete</button>
+            </form>
+            </div>
+        </div>
+        }
+    }
+    
+    <p class="text-success">@Model.DisplayMessage</p>
+    <form asp-page="Index" asp-page-handler="Create" method="post" class="form-inline" style="display: inline">
+        <input type="text" name="name" class="form-control" placeholder="Name" />
+        <input type="text" name="description" class="form-control" placeholder="Description" />
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Add</button>
+    </form>
+ </div>   
