@@ -143,4 +143,4 @@ Below is a brief list of improvements that might be made.
 - More effective use of git. The initial repository was discarded when the excercise was cancelled, and a new one created when it was complete.
 - Internal dependencies should be packaged, and ideally published.
 ### Code Quality
-As much as is possible, the code is idiomatic. It is written to be read. However with the limted, and fragemented time available, the issues with LiteDB, code clarity has suffered. Ideally a more substantial code review would be conducted. This would undoubtedly lead to a certain amount of refactoring for quality and clarity.
+As much as is possible, the code is idiomatic. It is written to be read. However with the limited, and fragmented time available and the issues with LiteDB, code clarity has suffered. Ideally a more substantial code review would be conducted. This would undoubtedly lead to a certain amount of refactoring for quality and clarity.
