@@ -56,7 +56,7 @@ The model was initially implemented using fully immutable state. Due to difficul
 // Create a list and add/remove/complete items
 var myList = new TodoList("myList")
 myList.AddItem(new TodoItem("item 1"));
-myList.AddItem(new TodoItem("item 2", "this is item 2));
+myList.AddItem(new TodoItem("item 2", "this is item 2"));
 myList.RemoveItem("item 2");
 myList.CompleteItem("item 2");
 
@@ -71,7 +71,7 @@ myList.ChangeItemName("item", "another Item");
 var event = new TodoEvent(EventType.Create);
 myList.AddItem(new TodoItem("buy fish"));
 myList.CompleteItem("buy fish");
-Assert.Equal(EventType.Complete, myList.GetLastEvent("buy fish");	// Passes
+Assert.Equal(EventType.Complete, myList.GetLastEvent("buy fish"));	// Passes
 
 // There are two methods for viewing all TodoItems on a TodoList
 IEnumerable<TodoItem> items = myList.GetAllItems();
