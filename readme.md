@@ -124,6 +124,7 @@ The application can be run natively on the dotnet runtime (netcoreapp2.2).
 It can be hosted in IIS using the ASP.NET Core module using in-process hosting. See [here](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-2.2) for instructions on configuring IIS.
 Note that the IIS website must be configured with a https binding. As the applicaiton uses a self-signed certificate, all browsers will present a security warning which must be bypassed to use the application.
 To build from source, clone the repository and build the Web.csproj project. 
+`dotnet build --project .\Web\Web.csproj `
 ## Review
 Overall the application was successful. All requirements were met or addressed. 
 The use of LiteDB for data persistence should perform at least as well as SQLite and in theory better than an Entity Framework based implementation. 
@@ -143,5 +144,7 @@ Below is a brief list of improvements that might be made.
 	- Client-side validation.
 - More effective use of git. The initial repository was discarded when the excercise was cancelled, and a new one created when it was complete.
 - Internal dependencies should be packaged, and ideally published.
+- Use of configuration file (using ASP.NET Options library)
+ - Configurable data locations
 ### Code Quality
 As much as is possible, the code is idiomatic. It is written to be read. However with the limited, and fragmented time available and the issues with LiteDB, code clarity has suffered. Ideally a more substantial code review would be conducted. This would undoubtedly lead to a certain amount of refactoring for quality and clarity.
