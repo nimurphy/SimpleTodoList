@@ -39,18 +39,9 @@ namespace SimpleTodoList.Service {
                 throw new TodoListAlreadyExistsException(
                     $"List with name {name} already exists");            
         }
-        
-        public IEnumerable<(string name, string description, 
-                bool complete, DateTime lastEventDate, string lastEventDesc)>
-                GetListItems(string name){
 
-            var list = lists.FindOne(Query.EQ("Name", name));
-            if (list is null)
-                throw new TodoListNotFoundException($"TodoList {name} does not exist");
-            
-            return list.GetAllItemsWithLastEvents()
-                .Select(l => (l.item.Name, l.item.Description, 
-                    l.item.IsComplete, l.lastEvent.EventDate, l.lastEvent.EventType.ToString()));
+        public void RemoveList(string name){
+            lists.Delete(Query.EQ("Name", name));
         }
 
         public void AddItem(string listName, string itemName){
@@ -60,11 +51,7 @@ namespace SimpleTodoList.Service {
             list.AddItem(new TodoItem(itemName));
             lists.Update(list);
         }
-
-        public void RemoveList(string name){
-            lists.Delete(Query.EQ("Name", name));
-        }
-
+        
         public void AddItem(string listName, string itemName, string itemDesc){
             var list = lists.FindOne(Query.EQ("Name", listName));
             if (list is null)
@@ -103,6 +90,19 @@ namespace SimpleTodoList.Service {
                 throw new TodoListNotFoundException($"TodoList {listName} does not exist");
             list.UpdateItemDescription(old, neu);
             lists.Update(list);
+        }
+
+        public IEnumerable<(string name, string description, 
+                bool complete, DateTime lastEventDate, string lastEventDesc)>
+                GetListItems(string name){
+
+            var list = lists.FindOne(Query.EQ("Name", name));
+            if (list is null)
+                throw new TodoListNotFoundException($"TodoList {name} does not exist");
+            
+            return list.GetAllItemsWithLastEvents()
+                .Select(l => (l.item.Name, l.item.Description, 
+                    l.item.IsComplete, l.lastEvent.EventDate, l.lastEvent.EventType.ToString()));
         }
     }
 }
