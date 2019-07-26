@@ -123,6 +123,7 @@ The application can be run natively on the dotnet runtime (netcoreapp2.2).
 `dotnet run web.dll`
 It can be hosted in IIS using the ASP.NET Core module using in-process hosting. See [here](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-2.2) for instructions on configuring IIS.
 Note that the IIS website must be configured with a https binding. As the applicaiton uses a self-signed certificate, all browsers will present a security warning which must be bypassed to use the application.
+To build from source, clone the repository and build the Web.csproj project. 
 ## Review
 Overall the application was successful. All requirements were met or addressed. 
 The use of LiteDB for data persistence should perform at least as well as SQLite and in theory better than an Entity Framework based implementation. 
@@ -130,8 +131,8 @@ The user interface has been tested in Firefox, Chrome and Edge, but not in Inter
 Below is a brief list of improvements that might be made.
 - Exceptions in the model are exposed to the UI.
 - Revisit the decision to use tuples instead of data transfer objects. 
-- Use of immutable state should be possible using LiteDB and a Builder pattern. This may require writing custom mappings using `BSonMapper`.
-	- The service implementation using of LiteDB should be reviewed in any case.
+- Use of immutable state should be possible using LiteDB and a Builder pattern. This may require writing custom mappings based on LiteDB's `BSonMapper`.
+	- The service implementation using LiteDB should be reviewed in any case.
 - Incomplete test coverage of `Service` library. No testing of UI.
 - More effective use use of XUnit.
 - No build / test automation.
