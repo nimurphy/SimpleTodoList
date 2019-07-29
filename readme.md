@@ -40,9 +40,7 @@
 ##### Bonus objectives
  -   Security: <span>ASP.NET</span> Identity. ~~Ideally using LiteDB to store user data.~~
 
-The approach taken is to use a .NET Core application using ASP.NET Razor Pages. Razor Pages are an alternative to the common MVC Framework, using instead an Model View Viewmodel (or Model View Presenter) pattern. Business logic is implemented in a domain model. The model is exposed to other components via service layers. In this case a single layer is used for both persistence and presentation. (Arguably this represents a leaky abstraction, as the management of collections of TodoLists is in fact business logic.) 
-Persistence is be implemeted using LiteDB, a serverless, in-memory document database.
-Security is implemented using ASP.NET Identity. It was not feasible to implement a custom data store using LiteDb, so SQLLite is used instead.
+The approach taken is an MVVM application using ASP.NET Razor Pages on top of a distinct domain model and a document store (LiteDB). Interaction between applicaiton components is achieved through services. As each component is very simple, a single service is used to facilitate dependencies between both model and UI, and model and persistence. 
 
 #### Other Approaches
  - <span>ASP.NET</span> MVC. As a UI framework, this would be overly complex for this applicaiton. 
@@ -135,6 +133,7 @@ The use of LiteDB for data persistence should perform at least as well as SQLite
 The user interface has been tested in Firefox, Chrome and Edge, but not in Internet Explorer.
 Below is a brief list of improvements that might be made.
 - Exceptions in the model are exposed to the UI.
+- ITodoListSerice interface should be defined in Core/MutubleCore library.
 - Revisit the decision to use tuples instead of data transfer objects. 
 - Use of immutable state should be possible using LiteDB and a Builder pattern. This may require writing custom mappings based on LiteDB's `BSonMapper`.
 	- The service implementation using LiteDB should be reviewed in any case.
@@ -148,7 +147,7 @@ Below is a brief list of improvements that might be made.
 	- Client-side validation.
 - More effective use of git. The initial repository was discarded when the excercise was cancelled, and a new one created when it was complete.
 - Internal dependencies should be packaged, and ideally published.
-- Use of configuration file (using ASP.NET Options library)
- - Configurable data locations
+- Use of configuration file (using ASP.NET Options library).
+ - Configurable data locations.
 ### Code Quality
 As much as is possible, the code is idiomatic. It is written to be read. However with the limited, and fragmented time available and the issues with LiteDB, code clarity has suffered. Ideally a more substantial code review would be conducted. This would undoubtedly lead to a certain amount of refactoring for quality and clarity.
