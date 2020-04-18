@@ -1,3 +1,9 @@
+# SimpleTodoList
+
+Application developed over a couple of days for a job interview. My objective for this, aside from getting the job, was to avoid using any mutable state, and to explore (or at least poke slightly) concepts relating to functional programming. I got some way with mutable state but then complications arose with the in-memory database library (another constraint). Not a lot to speak of on the FP side, but I did learn a little.
+
+And I got the job.
+
 ## Scope of Work
 
 ### Functional Requirements
